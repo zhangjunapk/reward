@@ -517,6 +517,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "common"
+version = "0.1.0"
+dependencies = [
+ "actix-web",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "concurrent-queue"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -530,6 +539,18 @@ name = "const-oid"
 version = "0.9.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2459377285ad874054d797f3ccebf984978aa39129f6eafde5cdc8315b612f8"
+
+[[package]]
+name = "controller"
+version = "0.1.0"
+dependencies = [
+ "actix-web",
+ "common",
+ "entity",
+ "sea-orm",
+ "serde",
+ "service",
+]
 
 [[package]]
 name = "cookie"
@@ -706,6 +727,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "entity"
+version = "0.1.0"
+dependencies = [
+ "sea-orm",
+ "serde",
+]
+
+[[package]]
 name = "equivalent"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -718,7 +747,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "33d852cb9b869c2a9b3df2f71a3074817f01e1844f839a144f5fcef059a4eb5d"
 dependencies = [
  "libc",
- "windows-sys 0.59.0",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -1867,12 +1896,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "repositories"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "entity",
+ "log",
+ "sea-orm",
+]
+
+[[package]]
 name = "reward"
 version = "0.1.0"
 dependencies = [
  "actix-web",
- "sea-orm",
- "time",
+ "controller",
+ "repositories",
 ]
 
 [[package]]
@@ -1956,7 +1995,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys",
- "windows-sys 0.59.0",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]
@@ -2145,6 +2184,15 @@ dependencies = [
  "itoa",
  "ryu",
  "serde",
+]
+
+[[package]]
+name = "service"
+version = "0.1.0"
+dependencies = [
+ "common",
+ "entity",
+ "repositories",
 ]
 
 [[package]]
@@ -2538,7 +2586,7 @@ dependencies = [
  "getrandom 0.3.2",
  "once_cell",
  "rustix",
- "windows-sys 0.59.0",
+ "windows-sys 0.52.0",
 ]
 
 [[package]]

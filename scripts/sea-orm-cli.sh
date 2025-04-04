@@ -1,0 +1,1 @@
+sea-orm-cli generate entity -u postgres://lenny:lenny@localhost:5432/reward -o entity/src

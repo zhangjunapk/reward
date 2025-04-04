@@ -3,12 +3,23 @@ name = "reward"
 version = "0.1.0"
 edition = "2024"
 
-[env]
-DATABASE_URL="postgresql://lenny:lenny@localhost:5432/reward"
 
+[workspace]
+members = ["entity", "service", "controller", "repositories", "common"]
 
+[workspace.dependencies]
+entity = { path = "entity" }
+log = "0.4.26"
+sea-orm = { version = "1.1.8", features = ["sqlx-postgres", "runtime-tokio-native-tls", "macros"] }
+repositories = { path = "repositories" }
+actix-web = "4"
+service = { path = "service" }
+controller = { path = "controller" }
+serde = { version = "1.0.219", features = ["derive"] }
+common={path = "common"}
+serde_json = "1.0"
 
 [dependencies]
-sea-orm = { version = "1.1.8", features = [ "sqlx-postgres","runtime-tokio-native-tls", "macros" ] }
 actix-web = "4"
-time = "0.3.41"
+controller = { workspace = true }
+repositories = { workspace = true }

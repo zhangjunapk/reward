@@ -1,0 +1,9 @@
+[package]
+name = "service"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+repositories = { workspace = true }
+entity={workspace = true}
+common={workspace = true}
