@@ -4,10 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-actix-web = {workspace = true}
-service={workspace = true}
-entity={workspace = true}
-serde = {workspace = true}
-common={workspace = true}
-
-sea-orm={workspace = true}
+actix-web = { workspace = true }
+service = { workspace = true }
+entity = { workspace = true }
+common = { workspace = true }

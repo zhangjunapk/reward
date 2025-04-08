@@ -521,6 +521,8 @@ name = "common"
 version = "0.1.0"
 dependencies = [
  "actix-web",
+ "entity",
+ "sea-orm",
  "serde",
  "serde_json",
 ]
@@ -547,8 +549,6 @@ dependencies = [
  "actix-web",
  "common",
  "entity",
- "sea-orm",
- "serde",
  "service",
 ]
 
@@ -730,8 +730,10 @@ dependencies = [
 name = "entity"
 version = "0.1.0"
 dependencies = [
+ "actix-web",
  "sea-orm",
  "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -2193,6 +2195,8 @@ dependencies = [
  "common",
  "entity",
  "repositories",
+ "rust_decimal",
+ "sea-orm",
 ]
 
 [[package]]

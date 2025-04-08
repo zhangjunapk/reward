@@ -1,4 +1,8 @@
 pub mod service_provider;
+pub mod user;
+pub mod user_relation;
+pub mod user_fee;
+mod user_reward;
 
 use sea_orm::{ConnectOptions, Database, DatabaseConnection};
 use std::sync::OnceLock;

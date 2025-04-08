@@ -7,3 +7,5 @@ edition = "2024"
 repositories = { workspace = true }
 entity={workspace = true}
 common={workspace = true}
+rust_decimal = {workspace = true}
+sea-orm = {workspace = true}

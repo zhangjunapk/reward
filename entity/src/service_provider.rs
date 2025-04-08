@@ -3,7 +3,7 @@
 use sea_orm::entity::prelude::*;
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq,Deserialize,Serialize)]
+#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq, Deserialize, Serialize, Default)]
 #[sea_orm(table_name = "service_provider")]
 pub struct Model {
     pub name: String,
@@ -11,10 +11,57 @@ pub struct Model {
     pub create_time: DateTime,
     #[sea_orm(primary_key)]
     pub id: i64,
+    pub reward_config: String,
+    pub status: Status,
+}
+
+#[derive(Deserialize, Serialize)]
+pub enum RewardConfig {
+    /// reward percent of root user
+    Default(u8),
+    /// all half slice
+    HalfSlice,
+}
+
+impl From<String> for RewardConfig {
+    fn from(value: String) -> Self {
+        serde_json::from_str(&value).unwrap()
+    }
+}
+
+impl Model {
+    pub fn reward_config(&self) -> RewardConfig {
+        serde_json::from_str::<RewardConfig>(self.reward_config.as_str())
+            .unwrap_or_else(|_| RewardConfig::Default(30))
+    }
+}
+
+mod test {
+    use crate::service_provider::RewardConfig;
+
+    #[test]
+    fn te() {
+        let a = r#"{ "Default": 30 }"#;
+        let a = serde_json::from_str::<RewardConfig>(a);
+        if let Ok(RewardConfig::Default(val)) = a {
+            println!("{:?}", val);
+        }
+    }
+}
+
+#[derive(
+    Debug, Clone, PartialEq, Eq, EnumIter, DeriveActiveEnum, Default, Deserialize, Serialize,
+)]
+#[sea_orm(rs_type = "String", db_type = "String(StringLen::N(8))")]
+pub enum Status {
+    #[sea_orm(string_value = "Disabled")]
+    #[default]
+    Disabled,
+    #[sea_orm(string_value = "Enabled")]
+    Enabled,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
 pub enum Relation {}
 
 impl ActiveModelBehavior for ActiveModel {}
-

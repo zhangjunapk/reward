@@ -1,5 +1,6 @@
 pub mod operate_receipt;
 pub mod global_response;
+pub mod request;
 
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
@@ -23,11 +24,11 @@ macro_rules! response {
         match $arg {
             Result::Ok(value) => $crate::global_response::GlobalResponse {
                 operate_receipt: $crate::operate_receipt::OperateReceipt::Success,
-                data: value,
+                data: Some(value),
             },
             Result::Err(error) => $crate::global_response::GlobalResponse {
                 operate_receipt: error,
-                data: (),
+                data: None,
             }
         }
     }};

@@ -5,9 +5,9 @@ use sea_orm::entity::prelude::*;
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Eq)]
 #[sea_orm(table_name = "user_fee")]
 pub struct Model {
-    pub user_id: i32,
+    pub user_id: i64,
     pub fee: Decimal,
-    pub create_time: Time,
+    pub create_time: DateTime,
     #[sea_orm(primary_key)]
     pub id: i64,
 }
